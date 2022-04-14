@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.StudentDao">
+    <!--
+        上来先删除<mapper>中的全部内容，然后根据以下内容进行修改
+        mapper namespace="org.example.dao.StudentDao"，修改这个内容，鼠标右键StudentDao接口，Copy Reference并给namespace赋值
+        在当前文件夹中，可以使用特定的标签，表示数据库的特定操作
+        <select>：表示执行查询，在标签中写select语句
+        <update>：表示更新数据库的操作，在标签中写update语句
+        <insert>：表示插入操作，在标签中写insert语句
+        <delete>：表示删除操作，在标签中写delete语句
+
+        现在写查询操作，如下
+        写<select>标签，id的值为接口中对应的函数的名字，MyBatis会使用这个id的值来找到要执行的sql语句这里是selectStudent
+        id="selectStudent"
+        resultType表示sql语句执行后得到的ResultSet，遍历这个ResultSet得到java对象的类型，这个resultType的值要写Student类的全限定名称
+        右键Student类，Copy Reference并给resultType赋值
+        resultType="org.example.entity.Student"
+        标签中写需要执行的sql语句
+
+    -->
+    <select id="selectStudent" resultType="org.example.entity.Student">
+        select id,name,email,age from student order by id
+    </select>
+
+    <insert id="insertStudent">
+        insert into student values(#{id},#{name},#{email},#{age})
+    </insert>
+    <!--
+        这是MyBatis的映射文件
+    -->
+</mapper>

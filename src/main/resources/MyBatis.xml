@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--settings:控制MyBatis全局行为-->
+    <settings>
+        <!--设置MyBatis输出日志，输出到控制台上-->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+    <!--环境配置：数据库的连接信息，下面的id可以有多个default必须和某个id一样，它告诉MyBatis访问哪个数据库-->
+    <environments default="mybatis">
+        <!--一个数据库信息的配置，id是一个自定义的唯一值，表示环境的名称-->
+        <environment id="mybatis">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--下面的是配置数据库的具体信息，按照以前JDBC的配置写-->
+
+                <!--数据库的驱动类名-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <!--连接数据库的url字符串，这里注意3306/后是数据库的名字，这里的数据库叫test-->
+                <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+                <!--访问数据库的用户名-->
+                <property name="username" value="root"/>
+                <!--密码-->
+                <property name="password" value="mxc392104123"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--sql映射文件(mapper)的位置-->
+    <mappers>
+        <!--
+            一个mapper标签指定一个文件的位置，它的值是从类路径开始的信息，也就是target/classes后的路径
+            target/classes/org/example/dao/StudentDao.xml，右键选中StudentDao.xml，Copy Path
+            注意去掉target/classes/，resource="org/example/dao/StudentDao.xml"
+        -->
+        <mapper resource="org/example/dao/StudentDao.xml"/>
+    </mappers>
+</configuration>
+<!--
+    这是MyBatis的主配置文件，主要定义了数据库的配置信息，就是以前JDBC的驱动，账号，密码之类的，还定义了sql映射文件的位置
+-->
