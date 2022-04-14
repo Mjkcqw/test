@@ -56,6 +56,7 @@ public class MyApp {
 
         //8.输出结果
         System.out.println("执行insert的结果："+num);
+        System.out.println(123);
         //9.关闭SqlSession对象
         sqlSession.close();
     }
